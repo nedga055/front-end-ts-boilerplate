@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/npm/l/cdocli.svg)](https://github.com/nedga055/front-end-ts-boilerplate/blob/master/package.json)
+
 # Boilerplate for Front End Typescript projects
 
 ## ESLint
