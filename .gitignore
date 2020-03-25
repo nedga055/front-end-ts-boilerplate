@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Next JS
+.next/
+
+# IDE Specic
+.idea/
+.vscode/
+
+# Mac
+.DS_STORE
