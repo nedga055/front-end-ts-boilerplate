@@ -5,7 +5,7 @@
 ## ESLint
 ESLint is set to run when run the `npm run dev` command. This will throw errors/warning if any of the specified rules fail.
 
-The ESLint rules are specified in the `./.eslintrc.js` file under the `rules` section, where additional rules from the defaults and extended libraries can be added.
+The ESLint rules are specified in the `.eslintrc.js` file under the `rules` section, where additional rules from the defaults and extended libraries can be added.
 
 For a list of rules that can be enabled, check out the [rules](https://eslint.org/docs/rules/) page in the eslint docs.
 
