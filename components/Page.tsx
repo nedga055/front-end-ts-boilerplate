@@ -1,43 +1,37 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
 import { Theme } from "./styles/Theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import ContainerStyles from "./styles/ContainerStyles";
 
-import Navigation from "./Navigation";
+import HorizontalNav from "./HorizontalNav";
 
 const StyledPage = styled.div`
 	height: 100%;
-	display: -ms-grid;
-	display: grid;
-	-ms-grid-columns: 60px 1fr;
-	grid-template-columns: 60px 1fr;
-	-ms-grid-rows: 1fr;
-	grid-template-rows: 1fr;
-
-	> *:nth-child(1) {
-		-ms-grid-row: 1;
-		-ms-grid-column: 1;
-	}
-	> *:nth-child(2) {
-		-ms-grid-row: 1;
-		-ms-grid-column: 2;
-	}
+	display: flex;
+	flex-direction: column;
 `;
 
 const Inner = styled.div`
 	padding: 0 2rem;
 `;
 
-class Page extends Component {
+type Props = {
+	children: ReactNode;
+};
+
+class Page extends Component<Props> {
 	render() {
 		return (
 			<ThemeProvider theme={Theme}>
 				<GlobalStyle />
 				<StyledPage>
-					<Navigation />
-					<Inner>{this.props.children}</Inner>
+					<HorizontalNav />
+					<ContainerStyles>
+						<Inner>{this.props.children}</Inner>
+					</ContainerStyles>
 				</StyledPage>
 			</ThemeProvider>
 		);

@@ -68,14 +68,19 @@ html {
 }
 
 body {
-  background: ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.gray.w100};
+  color: ${({ theme }) => theme.colors.gray.w500};
   font-size: 1.6rem;
   line-height: 2;
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Raleway';
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
 }
 
 #__next {

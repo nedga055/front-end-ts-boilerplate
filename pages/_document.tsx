@@ -1,3 +1,4 @@
+import React, { ReactNode } from "react";
 import Document, {
 	Head,
 	Main,
@@ -5,9 +6,12 @@ import Document, {
 	DocumentContext,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import * as React from "react";
 
-export default class MyDocument extends Document {
+type Props = {
+	styleTags: ReactNode;
+};
+
+export default class MyDocument extends Document<Props> {
 	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
