@@ -1,13 +1,16 @@
 import React from "react";
-import Link from "next/link";
+import { Link } from "../i18n";
 import styled from "styled-components";
 import { darken } from "polished";
 import { IoMdPerson } from "react-icons/io";
+import { useTranslation } from "../utils/i18n";
 
 import ContainerStyles from "./styles/ContainerStyles";
 import SROnlyStyle from "./styles/SROnlyStyle";
+import NavLinkStyle from "./styles/NavLinkStyle";
 
 import Logo from "./svgs/Logo";
+import LangSwitcher from "./LangSwitcher";
 
 function isActive(pathname: string): boolean {
 	return (
@@ -43,32 +46,6 @@ const StyledMain = styled.div`
 	margin-left: ${({ theme }) => theme.margin.lg};
 `;
 
-const StyledLinkWrapper = styled.div`
-	display: inline-block;
-	background: transparent;
-	border-top: 3px solid transparent;
-	border-bottom: 3px solid transparent;
-	transition: border-color 0.15s linear;
-
-	&[data-active="true"] {
-		background: ${({ theme }) => darken(0.05, theme.colors.theme.primary)};
-	}
-
-	&[data-active="true"],
-	&:hover {
-		border-bottom-color: ${({ theme }) => theme.colors.theme.tertiary};
-	}
-
-	> a {
-		display: inline-block;
-		color: ${({ theme }) => theme.colors.white};
-		padding: ${() => (5 - 2) / 2}rem ${({ theme }) => theme.padding.lg};
-		font-size: 1.8rem;
-		line-height: 2rem;
-		text-transform: lowercase;
-	}
-`;
-
 const StyledNavStart = styled.div`
 	display: flex;
 	align-items: center;
@@ -76,8 +53,15 @@ const StyledNavStart = styled.div`
 
 const StyledNavEnd = styled.div`
 	justify-self: flex-end;
+	display: flex;
+	align-items: center;
 
-	> a {
+	> div,
+	> ul {
+		margin: 0 ${({ theme }) => theme.margin.md};
+	}
+
+	> div > a {
 		display: inline-block;
 		color: ${({ theme }) => theme.colors.white};
 		padding: 0.4rem 0.55rem;
@@ -97,14 +81,15 @@ const StyledNavEnd = styled.div`
 	}
 `;
 
-const HorizontalNav = () => {
+const HorizontalNav = (props) => {
+	const { t } = useTranslation();
 	const menuItems = [
 		{
-			title: "Home",
+			title: t("home"),
 			slug: "/",
 		},
 		{
-			title: "Components",
+			title: t("components"),
 			slug: "/components",
 		},
 	];
@@ -115,27 +100,30 @@ const HorizontalNav = () => {
 				<StyledNav>
 					<StyledNavStart>
 						<Link href="/">
-							<StyledLogoLink title={"Home"} aria-label={"Home"}>
+							<StyledLogoLink title={t("home")} aria-label={t("home")}>
 								<Logo width={32} height={32} />
-								<SROnlyStyle>Home</SROnlyStyle>
+								<SROnlyStyle>{t("home")}</SROnlyStyle>
 							</StyledLogoLink>
 						</Link>
 						<StyledMain>
 							{menuItems.map(({ title, slug }, i) => (
-								<StyledLinkWrapper key={i} data-active={isActive(slug)}>
+								<NavLinkStyle key={i} data-active={isActive(slug)}>
 									<Link href={slug}>
 										<a>{title}</a>
 									</Link>
-								</StyledLinkWrapper>
+								</NavLinkStyle>
 							))}
 						</StyledMain>
 					</StyledNavStart>
 					<StyledNavEnd>
-						<Link href="/user/name">
-							<a>
-								<IoMdPerson />
-							</a>
-						</Link>
+						<LangSwitcher />
+						<div>
+							<Link href="/user/name">
+								<a>
+									<IoMdPerson />
+								</a>
+							</Link>
+						</div>
 					</StyledNavEnd>
 				</StyledNav>
 			</ContainerStyles>
