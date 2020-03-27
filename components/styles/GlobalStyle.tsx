@@ -70,7 +70,7 @@ html {
 body {
   background: ${({ theme }) => theme.colors.gray.w100};
   color: ${({ theme }) => theme.colors.gray.w500};
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 2;
   margin: 0;
   padding: 0;
