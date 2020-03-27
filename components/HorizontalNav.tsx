@@ -1,7 +1,7 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Link } from "../i18n";
 import styled from "styled-components";
-import { darken } from "polished";
 import { IoMdPerson } from "react-icons/io";
 import { useTranslation } from "../utils/i18n";
 
@@ -13,9 +13,9 @@ import Logo from "./svgs/Logo";
 import LangSwitcher from "./LangSwitcher";
 
 function isActive(pathname: string): boolean {
-	return (
-		typeof document !== "undefined" && document.location.pathname === pathname
-	);
+	const { i18n } = useTranslation();
+	const router = useRouter();
+	return router.pathname === pathname;
 }
 
 const StyledBar = styled.div`
