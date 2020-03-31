@@ -4,7 +4,7 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
 import { Theme } from "./styles/Theme";
 import GlobalStyle from "./styles/GlobalStyle";
-import ContainerStyles from "./styles/ContainerStyles";
+import Container from "./styles/Container";
 
 import HorizontalNav from "./HorizontalNav";
 
@@ -15,7 +15,7 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-	padding: 0 2rem;
+	padding: 0 2rem 10rem;
 `;
 
 type Props = {
@@ -29,9 +29,9 @@ class Page extends Component<Props> {
 				<GlobalStyle />
 				<StyledPage>
 					<HorizontalNav />
-					<ContainerStyles>
+					<Container>
 						<Inner>{this.props.children}</Inner>
-					</ContainerStyles>
+					</Container>
 				</StyledPage>
 			</ThemeProvider>
 		);

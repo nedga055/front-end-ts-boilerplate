@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 
-const NavLinkStyle = styled.div`
+const NavLink = styled.div`
 	display: inline-block;
 	background: transparent;
 	border-top: 3px solid transparent;
@@ -27,4 +27,4 @@ const NavLinkStyle = styled.div`
 	}
 `;
 
-export default NavLinkStyle;
+export default NavLink;

@@ -69,7 +69,7 @@ html {
 
 body {
   background: ${({ theme }) => theme.colors.gray.w100};
-  color: ${({ theme }) => theme.colors.gray.w500};
+  color: ${({ theme }) => theme.colors.gray.w900};
   font-size: 1.8rem;
   line-height: 2;
   margin: 0;
@@ -81,6 +81,10 @@ body {
 a {
 	text-decoration: none;
 	cursor: pointer;
+}
+
+button {
+  font-family: 'Raleway';
 }
 
 #__next {

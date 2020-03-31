@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { IoMdPerson } from "react-icons/io";
 import { useTranslation } from "../utils/i18n";
 
-import ContainerStyles from "./styles/ContainerStyles";
-import SROnlyStyle from "./styles/SROnlyStyle";
-import NavLinkStyle from "./styles/NavLinkStyle";
+import Container from "./styles/Container";
+import SROnly from "./styles/SROnly";
+import NavLink from "./styles/NavLink";
 
 import Logo from "./svgs/Logo";
 import LangSwitcher from "./LangSwitcher";
@@ -96,22 +96,22 @@ const HorizontalNav = (props) => {
 
 	return (
 		<StyledBar>
-			<ContainerStyles>
+			<Container>
 				<StyledNav>
 					<StyledNavStart>
 						<Link href="/">
 							<StyledLogoLink title={t("home")} aria-label={t("home")}>
 								<Logo width={32} height={32} />
-								<SROnlyStyle>{t("home")}</SROnlyStyle>
+								<SROnly>{t("home")}</SROnly>
 							</StyledLogoLink>
 						</Link>
 						<StyledMain>
 							{menuItems.map(({ title, slug }, i) => (
-								<NavLinkStyle key={i} data-active={isActive(slug)}>
+								<NavLink key={i} data-active={isActive(slug)}>
 									<Link href={slug}>
 										<a>{title}</a>
 									</Link>
-								</NavLinkStyle>
+								</NavLink>
 							))}
 						</StyledMain>
 					</StyledNavStart>
@@ -126,7 +126,7 @@ const HorizontalNav = (props) => {
 						</div>
 					</StyledNavEnd>
 				</StyledNav>
-			</ContainerStyles>
+			</Container>
 		</StyledBar>
 	);
 };

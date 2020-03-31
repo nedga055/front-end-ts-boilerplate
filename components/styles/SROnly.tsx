@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SROnlyStyle = styled.span`
+const SROnly = styled.span`
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -12,4 +12,4 @@ const SROnlyStyle = styled.span`
 	border: 0;
 `;
 
-export default SROnlyStyle;
+export default SROnly;

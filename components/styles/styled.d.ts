@@ -17,6 +17,10 @@ declare module "styled-components" {
 				w300: string;
 				w400: string;
 				w500: string;
+				w600: string;
+				w700: string;
+				w800: string;
+				w900: string;
 			};
 		};
 		widths: {

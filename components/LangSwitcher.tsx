@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "../utils/i18n";
 import styled from "styled-components";
 
-import NavLinkStyle from "./styles/NavLinkStyle";
+import NavLink from "./styles/NavLink";
 
 const StyledLangSwitcher = styled.div`
 	list-style: none;
@@ -18,9 +18,9 @@ const LangSwitcher = () => {
 	return (
 		<StyledLangSwitcher>
 			{languagesToRender.map((lang) => (
-				<NavLinkStyle key={lang}>
+				<NavLink key={lang}>
 					<a onClick={() => changeLanguage(lang)}>{lang}</a>
-				</NavLinkStyle>
+				</NavLink>
 			))}
 		</StyledLangSwitcher>
 	);
