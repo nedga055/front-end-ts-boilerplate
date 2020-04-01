@@ -1,4 +1,6 @@
 {
   "home": "Accueil",
-  "components": "Composants"
+  "components": "Composants",
+  "profile": "Profile",
+  "menu-toggle": "Basculer le menu principal"
 }

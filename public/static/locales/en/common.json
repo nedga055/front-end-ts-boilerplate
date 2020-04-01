@@ -1,4 +1,6 @@
 {
   "home": "Home",
-  "components": "Components"
+  "components": "Components",
+  "profile": "Profile",
+  "menu-toggle": "Toggle main menu"
 }
