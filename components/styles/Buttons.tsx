@@ -4,7 +4,7 @@ import { darken } from "polished";
 export const PrimaryButton = styled.button`
 	display: inline-block;
 	font-size: 2rem;
-	font-weight: 500;
+	font-weight: 700;
 	line-height: 1;
 	color: ${({ theme }) => theme.colors.white};
 	background: ${({ theme }) => theme.colors.theme.primary};
@@ -34,6 +34,7 @@ export const SecondaryButton = styled(PrimaryButton)`
 `;
 
 export const TertiaryButton = styled(PrimaryButton)`
+	color: ${({ theme }) => theme.colors.gray.w900};
 	background: ${({ theme }) => theme.colors.theme.tertiary};
 	border: 1px solid ${({ theme }) => theme.colors.theme.tertiary};
 
