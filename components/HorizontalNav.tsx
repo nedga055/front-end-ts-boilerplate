@@ -167,88 +167,90 @@ const HorizontalNav = (props) => {
 	return (
 		<StyledBar>
 			<Container>
-				{mobileMenuBreakpoints.includes(breakpoint) && (
-					<StyledNav>
-						<StyledNavStart>
-							<Link href="/">
-								<StyledLogoLink title={t("home")} aria-label={t("home")}>
-									<Logo width={32} height={32} />
-									<SROnly>{t("home")}</SROnly>
-								</StyledLogoLink>
-							</Link>
-						</StyledNavStart>
-						<StyledNavEnd>
-							<MenuToggle
-								label={t("common.menu-toggle")}
-								width={32}
-								height={32}
-								setIsOpen={setIsOpen}
-								isOpen={isOpen}
-							/>
-						</StyledNavEnd>
-						{isOpen && (
-							<StyledMobileMenu aria-live="polite">
+				<StyledNav>
+					{mobileMenuBreakpoints.includes(breakpoint) && (
+						<>
+							<StyledNavStart>
+								<Link href="/">
+									<StyledLogoLink title={t("home")} aria-label={t("home")}>
+										<Logo width={32} height={32} />
+										<SROnly>{t("home")}</SROnly>
+									</StyledLogoLink>
+								</Link>
+							</StyledNavStart>
+							<StyledNavEnd>
+								<MenuToggle
+									label={t("common.menu-toggle")}
+									width={32}
+									height={32}
+									setIsOpen={setIsOpen}
+									isOpen={isOpen}
+								/>
+							</StyledNavEnd>
+							{isOpen && (
+								<StyledMobileMenu aria-live="polite">
+									<StyledMain>
+										{menuItems.map(({ title, slug }, i) => (
+											<NavLink key={i} data-active={isActive(slug)}>
+												<Link href={slug}>
+													<a onClick={() => setIsOpen(false)}>{title}</a>
+												</Link>
+											</NavLink>
+										))}
+									</StyledMain>
+									<StyledNavBottom>
+										<LangSwitcher />
+										<div>
+											<Link href="/user/name">
+												<a
+													onClick={() => setIsOpen(false)}
+													title={t("profile")}
+													aria-label={t("profile")}
+												>
+													<IoMdPerson />
+													<SROnly>{t("profile")}</SROnly>
+												</a>
+											</Link>
+										</div>
+									</StyledNavBottom>
+								</StyledMobileMenu>
+							)}
+						</>
+					)}
+
+					{mobileMenuBreakpoints.includes(breakpoint) === false && (
+						<>
+							<StyledNavStart>
+								<Link href="/">
+									<StyledLogoLink title={t("home")} aria-label={t("home")}>
+										<Logo width={32} height={32} />
+										<SROnly>{t("home")}</SROnly>
+									</StyledLogoLink>
+								</Link>
 								<StyledMain>
 									{menuItems.map(({ title, slug }, i) => (
 										<NavLink key={i} data-active={isActive(slug)}>
 											<Link href={slug}>
-												<a onClick={() => setIsOpen(false)}>{title}</a>
+												<a>{title}</a>
 											</Link>
 										</NavLink>
 									))}
 								</StyledMain>
-								<StyledNavBottom>
-									<LangSwitcher />
-									<div>
-										<Link href="/user/name">
-											<a
-												onClick={() => setIsOpen(false)}
-												title={t("profile")}
-												aria-label={t("profile")}
-											>
-												<IoMdPerson />
-												<SROnly>{t("profile")}</SROnly>
-											</a>
-										</Link>
-									</div>
-								</StyledNavBottom>
-							</StyledMobileMenu>
-						)}
-					</StyledNav>
-				)}
-
-				{mobileMenuBreakpoints.includes(breakpoint) === false && (
-					<StyledNav>
-						<StyledNavStart>
-							<Link href="/">
-								<StyledLogoLink title={t("home")} aria-label={t("home")}>
-									<Logo width={32} height={32} />
-									<SROnly>{t("home")}</SROnly>
-								</StyledLogoLink>
-							</Link>
-							<StyledMain>
-								{menuItems.map(({ title, slug }, i) => (
-									<NavLink key={i} data-active={isActive(slug)}>
-										<Link href={slug}>
-											<a>{title}</a>
-										</Link>
-									</NavLink>
-								))}
-							</StyledMain>
-						</StyledNavStart>
-						<StyledNavEnd>
-							<LangSwitcher />
-							<div>
-								<Link href="/user/name">
-									<a title={t("profile")} aria-label={t("profile")}>
-										<IoMdPerson />
-										<SROnly>{t("profile")}</SROnly>
-									</a>
-								</Link>
-							</div>
-						</StyledNavEnd>
-					</StyledNav>
-				)}
+							</StyledNavStart>
+							<StyledNavEnd>
+								<LangSwitcher />
+								<div>
+									<Link href="/user/name">
+										<a title={t("profile")} aria-label={t("profile")}>
+											<IoMdPerson />
+											<SROnly>{t("profile")}</SROnly>
+										</a>
+									</Link>
+								</div>
+							</StyledNavEnd>
+						</>
+					)}
+				</StyledNav>
 			</Container>
 		</StyledBar>
 	);
