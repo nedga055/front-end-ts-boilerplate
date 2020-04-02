@@ -6,6 +6,7 @@ import { Theme } from "./styles/Theme";
 import GlobalStyle from "./styles/GlobalStyle";
 import Container from "./styles/Container";
 
+import Meta from "./Meta";
 import HorizontalNav from "./HorizontalNav";
 
 const StyledPage = styled.div`
@@ -28,6 +29,7 @@ class Page extends Component<Props> {
 			<ThemeProvider theme={Theme}>
 				<GlobalStyle />
 				<StyledPage>
+					<Meta />
 					<HorizontalNav />
 					<Container>
 						<Inner>{this.props.children}</Inner>

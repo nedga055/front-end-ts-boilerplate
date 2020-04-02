@@ -203,9 +203,11 @@ const HorizontalNav = (props) => {
 										<Link href="/user/name">
 											<a
 												onClick={() => setIsOpen(false)}
+												title={t("profile")}
 												aria-label={t("profile")}
 											>
 												<IoMdPerson />
+												<SROnly>{t("profile")}</SROnly>
 											</a>
 										</Link>
 									</div>
@@ -238,8 +240,9 @@ const HorizontalNav = (props) => {
 							<LangSwitcher />
 							<div>
 								<Link href="/user/name">
-									<a>
+									<a title={t("profile")} aria-label={t("profile")}>
 										<IoMdPerson />
+										<SROnly>{t("profile")}</SROnly>
 									</a>
 								</Link>
 							</div>
