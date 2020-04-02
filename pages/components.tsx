@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import {
 	useTranslation,
@@ -40,6 +41,11 @@ const ComponentsPage: I18nPage = () => {
 	const { t } = useTranslation();
 	return (
 		<div>
+			<Head>
+				<title>
+					{t("components")} - {t("common:site-title")}
+				</title>
+			</Head>
 			<h1>{t("components")}</h1>
 			<div>
 				<h2>Grid</h2>

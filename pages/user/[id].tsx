@@ -1,10 +1,10 @@
 import React from "react";
+import Head from "next/head";
 import {
 	useTranslation,
 	I18nPage,
 	includeDefaultNamespaces,
 } from "../../utils/i18n";
-import { NextComponentType, NextPageContext } from "next";
 
 type Props = I18nPage & {
 	name: string;
@@ -13,9 +13,16 @@ type Props = I18nPage & {
 const UserPage = ({ name }: Props) => {
 	const { t } = useTranslation();
 	return (
-		<h1>
-			{t("user:user")}: {name}
-		</h1>
+		<>
+			<Head>
+				<title>
+					{t("common:profile")} - {t("common:site-title")}
+				</title>
+			</Head>
+			<h1>
+				{t("user:user")}: {name}
+			</h1>
+		</>
 	);
 };
 
