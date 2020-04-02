@@ -27,7 +27,7 @@ export default class MyDocument extends Document<Props> {
 			const initialProps = await Document.getInitialProps(ctx);
 			return {
 				...initialProps,
-				lang: ctx.req.language,
+				lang: typeof ctx.req.language !== "undefined" ? ctx.req.language : "en",
 				styles: (
 					<>
 						{initialProps.styles}
