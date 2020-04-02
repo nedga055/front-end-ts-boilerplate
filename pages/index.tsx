@@ -95,7 +95,7 @@ Home.getInitialProps = async () => {
 	const res = await fetch("https://api.github.com/repos/zeit/next.js");
 	const json = await res.json();
 	return {
-		namespacesRequired: includeDefaultNamespaces(["index"]),
+		namespacesRequired: includeDefaultNamespaces(["common"]),
 		stars: json.stargazers_count,
 	};
 };
