@@ -1,6 +1,56 @@
-[![License](https://img.shields.io/npm/l/cdocli.svg)](https://github.com/nedga055/front-end-ts-boilerplate/blob/master/package.json)
-
 # Boilerplate for Front End Typescript projects
+
+This is a boilerplate for front end projects which utilises the following technologies:
+
+ - [NextJS](https://nextjs.org/)  - A web application framework built on React.
+ - [Typescript](https://www.typescriptlang.org/) - A strict syntactical superset of JavaScript, and adds optional static typing to the language.
+ - [ESLint](https://eslint.org/) - JavaScript linter, used to analyze and fix code automatically.
+ - [Prettier](https://prettier.io/) - An opinionated code formatter. There are IDE plugins for all the major IDEs which will auto format your code based off your config on save.
+ 
+## Internationalization
+
+Internationalization is supported with the use of [Next i18next](https://github.com/isaachinman/next-i18next) which is a NextJS plugin which uses [i18next](https://www.i18next.com/) under the hood.
+
+By default, the supported languages are English and French, with English being the default. To change or extend these defaults, update the `NextI18Next` initialization in `i18n.js`.
+
+### Translating content
+
+Translating content occurs in `.json` files, organized in the following manner:
+
+```
+.
+└── public
+    └── static
+        └── locales
+            ├── en
+            |   └── common.json
+            └── fr
+                └── common.json
+```
+
+Each `.json` file in the individual locales folders represents a different namespace. To access terms from a given namespace, prefix the term key with the namespace plus a `:`.
+
+Here's an example of how to access tranlsated terms/content.
+
+```javascript
+import { useTranslation } from "../utils/i18n";
+
+const { t } = useTranslation();
+
+const term = t('common:site-title');
+```
+
+## Components
+
+Some default components have been added for convenience purposes, with the intention of growing them as needed. They can be adjusted as required.
+
+Checkout the `/components` page for the various components and example usages.
+
+## Accessibility
+
+This boilerplate is built accessibility in mind. Every page has been run through the Chrome development tools Lighthouse accessibility audit and currently all pass with scores of 100 percent.
+
+As default functionality is added, we will strive to keep these scores at 100 percent. 
 
 ## ESLint
 ESLint is set to run when run the `npm run dev` command. This will throw errors/warning if any of the specified rules fail.
