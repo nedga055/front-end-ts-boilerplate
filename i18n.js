@@ -1,5 +1,4 @@
 const NextI18Next = require("next-i18next").default;
-// import { useTranslation as originalUseTranslation } from "react-i18next";
 
 const nextI18NextInstance = new NextI18Next({
 	defaultLanguage: "en",
