@@ -8,6 +8,7 @@ import Document, {
 import { ServerStyleSheet } from "styled-components";
 
 type Props = {
+	lang: string;
 	styleTags: ReactNode;
 };
 
@@ -26,6 +27,7 @@ export default class MyDocument extends Document<Props> {
 			const initialProps = await Document.getInitialProps(ctx);
 			return {
 				...initialProps,
+				lang: ctx.req.language,
 				styles: (
 					<>
 						{initialProps.styles}
@@ -40,7 +42,7 @@ export default class MyDocument extends Document<Props> {
 
 	render(): JSX.Element {
 		return (
-			<html>
+			<html lang={this.props.lang}>
 				<Head>{this.props.styleTags}</Head>
 				<body>
 					<Main />
