@@ -48,7 +48,7 @@ Checkout the `/components` page for the various components and example usages.
 
 ## Accessibility
 
-This boilerplate is built accessibility in mind. Every page has been run through the Chrome development tools Lighthouse accessibility audit and currently all pass with scores of 100 percent.
+This boilerplate is built with accessibility in mind. Every page has been run through the Chrome development tools Lighthouse accessibility audit and currently all pass with scores of 100 percent.
 
 As default functionality is added, we will strive to keep these scores at 100 percent. 
 
