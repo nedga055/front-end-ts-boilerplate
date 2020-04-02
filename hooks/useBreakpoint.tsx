@@ -18,7 +18,7 @@ const getDeviceBreakpoint = (width: number) => {
 export const useBreakpoint = () => {
 	const client = typeof window !== "undefined";
 	const [breakpoint, setBreakpoint] = useState(() =>
-		client ? getDeviceBreakpoint(window.innerWidth) : "md",
+		client ? getDeviceBreakpoint(window.innerWidth) : "xl",
 	);
 
 	const calculateInnerWidth = throttle(200, () => {
