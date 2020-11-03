@@ -15,4 +15,9 @@ module.exports = {
 
 		return config;
 	},
+	/* Internationalized routing - next */
+	i18n: {
+		locales: ['en-US', 'fr'],
+		defaultLocale: 'en-US',
+	}
 };
