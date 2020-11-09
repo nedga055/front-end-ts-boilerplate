@@ -1,9 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Link } from "../i18n";
 import styled from "styled-components";
 import { darken } from "polished";
 import { IoMdPerson } from "react-icons/io";
+import Link from "next/link";
 
 import { useBreakpoint } from "../hooks/useBreakpoint";
 import { useTranslation } from "../utils/i18n";

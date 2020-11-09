@@ -1,16 +1,22 @@
 import App from "next/app";
 import { AppProps } from "next/app";
-import { appWithTranslation } from "../i18n";
 
 import Page from "../components/Page";
+import i18n from "../i18n.js";
 import * as React from "react";
+import {useRouter} from 'next/router'
+import "../styles/global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	return (
+	const router = useRouter();
+	// Apply language based on NextJS internationalized route
+	i18n.changeLanguage(router.locale);
+
+  return (
 		<Page>
 			<Component {...pageProps} />
 		</Page>
-	);
+	)
 }
 
 MyApp.getInitialProps = async (appContext) => {
@@ -18,4 +24,4 @@ MyApp.getInitialProps = async (appContext) => {
 	return { ...appProps };
 };
 
-export default appWithTranslation(MyApp);
+export default MyApp;

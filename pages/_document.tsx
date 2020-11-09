@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Document, {
+	Html,
 	Head,
 	Main,
 	NextScript,
@@ -8,14 +9,13 @@ import Document, {
 import { ServerStyleSheet } from "styled-components";
 
 type Props = {
-	lang: string;
-	styleTags: ReactNode;
+  styleTags: ReactNode;
 };
 
 export default class MyDocument extends Document<Props> {
 	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
-		const originalRenderPage = ctx.renderPage;
+    const originalRenderPage = ctx.renderPage;
 
 		try {
 			ctx.renderPage = () =>
@@ -27,7 +27,6 @@ export default class MyDocument extends Document<Props> {
 			const initialProps = await Document.getInitialProps(ctx);
 			return {
 				...initialProps,
-				lang: typeof ctx.req.language !== "undefined" ? ctx.req.language : "en",
 				styles: (
 					<>
 						{initialProps.styles}
@@ -41,14 +40,27 @@ export default class MyDocument extends Document<Props> {
 	}
 
 	render(): JSX.Element {
-		return (
-			<html lang={this.props.lang}>
-				<Head>{this.props.styleTags}</Head>
-				<body>
-					<Main />
-					<NextScript />
-				</body>
-			</html>
+  
+    return (
+      <Html>
+        <html>
+          <Head>
+            {this.props.styleTags}
+          </Head>
+          <body>
+						<div id="def-top"></div>
+            <Main />
+						<div id="def-footer"></div>
+            <NextScript />
+						<script src="/static/def-init.js"></script>
+            <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_32/js/jquery/2.2.4/jquery.min.js"></script>
+            <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_32/js/wet-boew.min.js"></script>
+            <span id="wb-rsz" className="wb-init">&nbsp;</span>
+            <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_32/js/theme.min.js"></script>
+            <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_32/cdts/cdtscustom.js"></script>
+          </body>
+        </html>
+      </Html>
 		);
 	}
 }

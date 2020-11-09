@@ -1,8 +1,9 @@
 import React from "react";
-import { useTranslation } from "../utils/i18n";
 import styled from "styled-components";
 
 import NavLink from "./styles/NavLink";
+import Link from "next/link"
+import {useRouter} from 'next/router'
 
 const StyledLangSwitcher = styled.div`
 	list-style: none;
@@ -10,16 +11,22 @@ const StyledLangSwitcher = styled.div`
 `;
 
 const LangSwitcher = () => {
-	const { i18n } = useTranslation();
-	const { language, languages, changeLanguage } = i18n;
-
-	const languagesToRender = languages.filter((lang) => lang !== language);
-
+	const {pathname, asPath, query, locale, locales} = useRouter();
+	const languagesToRender = locales.filter((lang) => lang !== locale);
 	return (
 		<StyledLangSwitcher>
 			{languagesToRender.map((lang) => (
-				<NavLink key={lang}>
-					<a onClick={() => changeLanguage(lang)}>{lang}</a>
+				<NavLink key={lang} >
+					{/* Don't reload the page
+						<Link href={pathname} as={asPath} locale={lang}>
+							<a>{lang}</a>
+						</Link>
+					*/}
+
+					{/* Reload the page
+						- Necessary to reload WET header/footer/templates
+					*/}
+					<a href={"/"+lang+asPath}>{lang}</a>
 				</NavLink>
 			))}
 		</StyledLangSwitcher>

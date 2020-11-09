@@ -11,7 +11,7 @@ type Props = I18nPage & {
 };
 
 const Home = ({ stars }: Props) => {
-	const { t, i18n } = useTranslation();
+	const { t, i18n} = useTranslation();
 	const dev = `This is my word. Language ${i18n.language}`;
 
 	return (
@@ -95,7 +95,7 @@ Home.getInitialProps = async () => {
 	const res = await fetch("https://api.github.com/repos/zeit/next.js");
 	const json = await res.json();
 	return {
-		namespacesRequired: includeDefaultNamespaces(["common"]),
+		withNamespaces: includeDefaultNamespaces(["common"]),
 		stars: json.stargazers_count,
 	};
 };
