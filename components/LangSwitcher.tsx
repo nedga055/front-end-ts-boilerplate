@@ -13,14 +13,20 @@ const StyledLangSwitcher = styled.div`
 const LangSwitcher = () => {
 	const {pathname, asPath, query, locale, locales} = useRouter();
 	const languagesToRender = locales.filter((lang) => lang !== locale);
-
 	return (
 		<StyledLangSwitcher>
 			{languagesToRender.map((lang) => (
 				<NavLink key={lang} >
-					<Link href={pathname} as={asPath} locale={lang}>
-						<a>{lang}</a>
-					</Link>
+					{/* Don't reload the page
+						<Link href={pathname} as={asPath} locale={lang}>
+							<a>{lang}</a>
+						</Link>
+					*/}
+
+					{/* Reload the page
+						- Necessary to reload WET header/footer/templates
+					*/}
+					<a href={"/"+lang+asPath}>{lang}</a>
 				</NavLink>
 			))}
 		</StyledLangSwitcher>

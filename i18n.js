@@ -1,21 +1,21 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import common_en_US from "./public/static/locales/en-US/common.json";
+import common_en from "./public/static/locales/en/common.json";
 import common_fr from "./public/static/locales/fr/common.json";
-import index_en_US from "./public/static/locales/en-US/index.json";
+import index_en from "./public/static/locales/en/index.json";
 import index_fr from "./public/static/locales/fr/index.json";
-import user_en_US from "./public/static/locales/en-US/user.json";
+import user_en from "./public/static/locales/en/user.json";
 import user_fr from "./public/static/locales/fr/user.json";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources: {
-      'en-US': {
-        common: common_en_US,
-        index: index_en_US,
-        user: user_en_US,
+      'en': {
+        common: common_en,
+        index: index_en,
+        user: user_en,
       },
       'fr': {
         common: common_fr,
