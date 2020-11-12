@@ -29,6 +29,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.11.1",
     "i18next": "^19.8.3",
+    "i18next-http-backend": "^1.0.21",
     "isomorphic-unfetch": "^3.1.0",
     "next": "^10.0.0",
     "polished": "^3.6.7",
