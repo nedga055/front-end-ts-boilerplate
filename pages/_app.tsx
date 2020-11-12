@@ -5,7 +5,6 @@ import Page from "../components/Page";
 import i18n from "../i18n.js";
 import * as React from "react";
 import {useRouter} from 'next/router'
-import "../styles/global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
