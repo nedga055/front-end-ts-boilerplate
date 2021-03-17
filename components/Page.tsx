@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from "react";
 
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import styled from "@emotion/styled";
 
 import { Theme } from "./styles/Theme";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -9,15 +9,27 @@ import Container from "./styles/Container";
 import Meta from "./Meta";
 import HorizontalNav from "./HorizontalNav";
 
-const StyledPage = styled.div`
+import {
+	Box,
+	ChakraProvider,
+	extendTheme,
+	useColorModeValue,
+} from "@chakra-ui/react";
+
+const StyledPage = styled((props) => <Box {...props}></Box>)`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	transition: background-color 0.3s ease;
+	background-color: ${({ theme }) =>
+		useColorModeValue(theme.colors.gray.w100, theme.colors.gray.w700)};
 `;
 
 const Inner = styled.div`
-	padding: 0 2rem 10rem;
+	padding: 2rem 2rem 10rem;
 `;
+
+const ChakraTheme = extendTheme(Theme);
 
 type Props = {
 	children: ReactNode;
@@ -26,7 +38,7 @@ type Props = {
 class Page extends Component<Props> {
 	render() {
 		return (
-			<ThemeProvider theme={Theme}>
+			<ChakraProvider theme={ChakraTheme}>
 				<GlobalStyle />
 				<StyledPage>
 					<Meta />
@@ -35,7 +47,7 @@ class Page extends Component<Props> {
 						<Inner>{this.props.children}</Inner>
 					</Container>
 				</StyledPage>
-			</ThemeProvider>
+			</ChakraProvider>
 		);
 	}
 }

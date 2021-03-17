@@ -1,6 +1,6 @@
-import "styled-components";
+import "@emotion/styled";
 
-declare module "styled-components" {
+declare module "@emotion/styled" {
 	export interface DefaultTheme {
 		maxWidth: string;
 		colors: {
@@ -25,7 +25,6 @@ declare module "styled-components" {
 		};
 		widths: {
 			max: {
-				xs: string;
 				sm: string;
 				md: string;
 				lg: string;

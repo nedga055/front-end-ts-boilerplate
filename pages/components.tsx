@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import {
 	useTranslation,
 	I18nPage,
@@ -51,9 +51,9 @@ const ComponentsPage: I18nPage = () => {
 				<h2>Grid</h2>
 				<h3>Equal width columns</h3>
 				<StyledRow>
-					<StyledColumn>1 of 3</StyledColumn>
-					<StyledColumn>2 of 3</StyledColumn>
-					<StyledColumn>3 of 3</StyledColumn>
+					<StyledColumn columns={4}>1 of 3</StyledColumn>
+					<StyledColumn columns={4}>2 of 3</StyledColumn>
+					<StyledColumn columns={4}>3 of 3</StyledColumn>
 				</StyledRow>
 				<h3>One column fixed width</h3>
 				<StyledRow>

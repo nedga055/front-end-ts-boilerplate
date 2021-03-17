@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const Container = styled.div`
+const ContainerWrapper = (props) => {
+	return <div {...props}></div>;
+};
+
+const Container = styled(ContainerWrapper)`
 	width: 100%;
 	margin: 0 auto;
 
