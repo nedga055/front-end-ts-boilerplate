@@ -7,6 +7,8 @@ import {
 	includeDefaultNamespaces,
 } from "../utils/i18n";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import {
 	PrimaryButton,
 	SecondaryButton,
@@ -102,10 +104,14 @@ const ComponentsPage: I18nPage = () => {
 	);
 };
 
-ComponentsPage.getInitialProps = () => {
-	return {
-		namespacesRequired: includeDefaultNamespaces(["common"]),
-	};
-};
+export const getServerSideProps = async ({ locale }) => ({
+	// Commenting out due to proxy errors
+	// const res = await fetch("https://api.github.com/repos/zeit/next.js");
+	// const json = await res.json();
+	props: {
+		// stars: json.stargazers_count,
+		...(await serverSideTranslations(locale, includeDefaultNamespaces([]))),
+	},
+});
 
 export default ComponentsPage;

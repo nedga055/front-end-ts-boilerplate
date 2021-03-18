@@ -6,6 +6,8 @@ import {
 	includeDefaultNamespaces,
 } from "../utils/i18n";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 type Props = I18nPage & {
 	stars: string;
 };
@@ -91,14 +93,17 @@ const Home = ({ stars }: Props) => {
 	);
 };
 
-Home.getInitialProps = async () => {
+export const getServerSideProps = async ({ locale }) => ({
+	// Commenting out due to proxy errors
 	// const res = await fetch("https://api.github.com/repos/zeit/next.js");
 	// const json = await res.json();
-	return {
-		namespacesRequired: includeDefaultNamespaces(["common"]),
+	props: {
 		// stars: json.stargazers_count,
-		stars: 1,
-	};
-};
+		...(await serverSideTranslations(
+			locale,
+			includeDefaultNamespaces(["index"]),
+		)),
+	},
+});
 
 export default Home;

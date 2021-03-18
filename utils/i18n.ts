@@ -1,4 +1,4 @@
-import { useTranslation as originalUseTranslation } from "react-i18next";
+import { useTranslation as originalUseTranslation } from "next-i18next";
 import { NextComponentType, NextPageContext } from "next";
 
 export const includeDefaultNamespaces = (namespaces: string[]) =>
@@ -9,4 +9,4 @@ export type I18nPage<P = {}> = NextComponentType<
 	NextPageContext,
 	{ namespacesRequired: string[] },
 	P & { namespacesRequired: string[] }
-	>;
+>;

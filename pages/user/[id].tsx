@@ -6,6 +6,8 @@ import {
 	includeDefaultNamespaces,
 } from "../../utils/i18n";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 type Props = I18nPage & {
 	name: string;
 };
@@ -26,11 +28,14 @@ const UserPage = ({ name }: Props) => {
 	);
 };
 
-UserPage.getInitialProps = function (context) {
-	return {
-		namespacesRequired: includeDefaultNamespaces(["user"]),
-		name: context.query.id,
-	};
-};
+export const getServerSideProps = async ({ query, locale }) => ({
+	props: {
+		name: query.id,
+		...(await serverSideTranslations(
+			locale,
+			includeDefaultNamespaces(["user"]),
+		)),
+	},
+});
 
 export default UserPage;
