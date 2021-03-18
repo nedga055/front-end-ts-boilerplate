@@ -1,7 +1,8 @@
 type ThrottleCallbackFunction = (...args: any[]) => any;
 
+let timerId;
+
 export const throttle = (delay: number, fn: ThrottleCallbackFunction) => {
-	let timerId;
 	return (...args) => {
 		if (timerId) {
 			clearTimeout(timerId);
@@ -10,5 +11,5 @@ export const throttle = (delay: number, fn: ThrottleCallbackFunction) => {
 			fn(...args);
 			timerId = null;
 		}, delay);
-	}
+	};
 };

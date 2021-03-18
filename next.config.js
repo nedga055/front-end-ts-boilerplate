@@ -1,3 +1,5 @@
+const { i18n } = require("./next-i18next.config");
+
 module.exports = {
 	webpack: (config, { dev }) => {
 		if (dev) {
@@ -16,8 +18,5 @@ module.exports = {
 		return config;
 	},
 	/* Internationalized routing - next */
-	i18n: {
-		locales: ['en', 'fr'],
-		defaultLocale: 'en',
-	}
+	i18n,
 };

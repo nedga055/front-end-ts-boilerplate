@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from "@emotion/styled";
 
 const Theme: DefaultTheme = {
 	maxWidth: "1200px",

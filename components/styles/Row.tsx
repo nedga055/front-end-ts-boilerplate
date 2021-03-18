@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const Row = styled.div`
+const RowWrapper = (props) => {
+	return <div {...props}></div>;
+};
+
+const Row = styled(RowWrapper)`
 	display: flex;
 	flex-wrap: wrap;
 	margin: 1.5rem -1.5rem;

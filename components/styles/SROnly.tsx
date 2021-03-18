@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const SROnly = styled.span`
+const SpanWrapper = (props) => {
+	return <span {...props}></span>;
+};
+
+const SROnly = styled(SpanWrapper)`
 	position: absolute;
 	width: 1px;
 	height: 1px;

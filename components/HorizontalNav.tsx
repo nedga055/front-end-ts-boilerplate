@@ -1,9 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { darken } from "polished";
 import { IoMdPerson } from "react-icons/io";
 import Link from "next/link";
+import { Button, useColorMode } from "@chakra-ui/react";
 
 import { useBreakpoint } from "../hooks/useBreakpoint";
 import { useTranslation } from "../utils/i18n";
@@ -16,17 +17,25 @@ import NavLink from "./styles/NavLink";
 import Logo from "./svgs/Logo";
 import MenuToggle from "./svgs/MenuToggle";
 import LangSwitcher from "./LangSwitcher";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { TertiaryButton } from "./styles/Buttons";
 
 function isActive(pathname: string): boolean {
 	const router = useRouter();
 	return router.pathname === pathname;
 }
 
-const StyledBar = styled.div`
-	background: ${({ theme }) => theme.colors.theme.primary};
+const BasicDivWrapper = (props) => {
+	return <div {...props}></div>;
+};
+
+const StyledBar = styled(BasicDivWrapper)`
+	background: ${({ theme }) => theme.colors.gray.w200};
+	border-bottom: 1px solid ${({ theme }) => theme.colors.gray.w600};
+	z-index: 3;
 `;
 
-const StyledNav = styled.nav`
+const StyledNav = styled((props) => <nav {...props}></nav>)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -34,7 +43,7 @@ const StyledNav = styled.nav`
 	padding: 0 ${({ theme }) => theme.padding.lg};
 `;
 
-const StyledLogoLink = styled.a`
+const PreStyledLogoLink = styled((props) => <a {...props}></a>)`
 	line-height: 1;
 	padding: 1.05rem 0;
 
@@ -47,18 +56,24 @@ const StyledLogoLink = styled.a`
 	}
 `;
 
-const StyledMain = styled.div`
+// Forward ref error fix
+const StyledLogoLink = React.forwardRef((props: { children?; title }, ref) => (
+	<PreStyledLogoLink {...props}></PreStyledLogoLink>
+));
+StyledLogoLink.displayName = "StyledLogoLink";
+
+const StyledMain = styled(BasicDivWrapper)`
 	display: flex;
 	align-items: baseline;
 	margin-left: ${({ theme }) => theme.margin.lg};
 `;
 
-const StyledNavStart = styled.div`
+const StyledNavStart = styled(BasicDivWrapper)`
 	display: flex;
 	align-items: center;
 `;
 
-const StyledNavEnd = styled.div`
+const StyledNavEnd = styled(BasicDivWrapper)`
 	justify-self: flex-end;
 	display: flex;
 	align-items: center;
@@ -70,15 +85,15 @@ const StyledNavEnd = styled.div`
 
 	> button {
 		display: flex;
-		color: ${({ theme }) => theme.colors.white};
+		color: ${({ theme }) => theme.colors.black};
 	}
 
 	> div > a {
 		display: inline-block;
-		color: ${({ theme }) => theme.colors.white};
-		padding: 0.4rem 0.55rem;
+		color: ${({ theme }) => theme.colors.black};
+		padding: 0.55rem 0.55rem;
 		line-height: 1;
-		border: 1px solid ${({ theme }) => theme.colors.white};
+		border: 1px solid ${({ theme }) => theme.colors.black};
 		border-radius: 50%;
 		background: transparent;
 		transition: all 0.15s linear;
@@ -93,17 +108,17 @@ const StyledNavEnd = styled.div`
 	}
 `;
 
-const StyledNavBottom = styled.div`
+const StyledNavBottom = styled(BasicDivWrapper)`
 	align-items: center;
 	display: flex;
 
 	> div {
 		> a {
 			display: inline-block;
-			color: ${({ theme }) => theme.colors.white};
-			padding: 0.4rem 0.55rem;
+			color: ${({ theme }) => theme.colors.black};
+			padding: 0.55rem 0.55rem;
 			line-height: 1;
-			border: 1px solid ${({ theme }) => theme.colors.white};
+			border: 1px solid ${({ theme }) => theme.colors.black};
 			border-radius: 50%;
 			background: transparent;
 			transition: all 0.15s linear;
@@ -111,16 +126,16 @@ const StyledNavBottom = styled.div`
 	}
 `;
 
-const StyledMobileMenu = styled.div`
+const StyledMobileMenu = styled(BasicDivWrapper)`
 	display: flex;
 	flex-direction: column;
 	position: absolute;
 	top: 100%;
-	background: ${({ theme }) => theme.colors.theme.primary};
+	background: ${({ theme }) => theme.colors.gray.w200};
 	margin: 0 -1.5rem;
 	width: 100%;
-	border-top: 1px solid
-		${({ theme }) => darken(0.05, theme.colors.theme.primary)};
+	border: 1px solid ${({ theme }) => theme.colors.gray.w600};
+	border-top: none;
 
 	${StyledMain} {
 		flex-direction: column;
@@ -147,11 +162,12 @@ const StyledMobileMenu = styled.div`
 	}
 `;
 
-const HorizontalNav = (props) => {
+const HorizontalNav = function (props) {
 	const { t } = useTranslation();
 	const mobileMenuBreakpoints = ["xs", "sm", "md"];
 	const breakpoint = useBreakpoint();
 	const { isOpen, setIsOpen } = useToggleOpen(false);
+	const { colorMode, toggleColorMode } = useColorMode();
 
 	const menuItems = [
 		{
@@ -212,6 +228,24 @@ const HorizontalNav = (props) => {
 												</a>
 											</Link>
 										</div>
+										<div>
+											<TertiaryButton
+												aria-live="polite"
+												onClick={toggleColorMode}
+											>
+												{colorMode == "dark" ? (
+													<>
+														<SunIcon></SunIcon>
+														<SROnly>{t("switch-dark-mode")}</SROnly>
+													</>
+												) : (
+													<>
+														<MoonIcon></MoonIcon>
+														<SROnly>{t("switch-light-mode")}</SROnly>
+													</>
+												)}
+											</TertiaryButton>
+										</div>
 									</StyledNavBottom>
 								</StyledMobileMenu>
 							)}
@@ -246,6 +280,21 @@ const HorizontalNav = (props) => {
 											<SROnly>{t("profile")}</SROnly>
 										</a>
 									</Link>
+								</div>
+								<div>
+									<TertiaryButton aria-live="polite" onClick={toggleColorMode}>
+										{colorMode == "dark" ? (
+											<>
+												<SunIcon></SunIcon>
+												<SROnly>{t("switch-dark-mode")}</SROnly>
+											</>
+										) : (
+											<>
+												<MoonIcon></MoonIcon>
+												<SROnly>{t("switch-light-mode")}</SROnly>
+											</>
+										)}
+									</TertiaryButton>
 								</div>
 							</StyledNavEnd>
 						</>

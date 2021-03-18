@@ -1,11 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import {
 	useTranslation,
 	I18nPage,
 	includeDefaultNamespaces,
 } from "../utils/i18n";
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import {
 	PrimaryButton,
@@ -51,9 +53,9 @@ const ComponentsPage: I18nPage = () => {
 				<h2>Grid</h2>
 				<h3>Equal width columns</h3>
 				<StyledRow>
-					<StyledColumn>1 of 3</StyledColumn>
-					<StyledColumn>2 of 3</StyledColumn>
-					<StyledColumn>3 of 3</StyledColumn>
+					<StyledColumn columns={4}>1 of 3</StyledColumn>
+					<StyledColumn columns={4}>2 of 3</StyledColumn>
+					<StyledColumn columns={4}>3 of 3</StyledColumn>
 				</StyledRow>
 				<h3>One column fixed width</h3>
 				<StyledRow>
@@ -102,10 +104,14 @@ const ComponentsPage: I18nPage = () => {
 	);
 };
 
-ComponentsPage.getInitialProps = () => {
-	return {
-		namespacesRequired: includeDefaultNamespaces(["common"]),
-	};
-};
+export const getServerSideProps = async ({ locale }) => ({
+	// Commenting out due to proxy errors
+	// const res = await fetch("https://api.github.com/repos/zeit/next.js");
+	// const json = await res.json();
+	props: {
+		// stars: json.stargazers_count,
+		...(await serverSideTranslations(locale, includeDefaultNamespaces([]))),
+	},
+});
 
 export default ComponentsPage;

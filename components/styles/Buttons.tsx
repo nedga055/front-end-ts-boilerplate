@@ -1,7 +1,12 @@
-import styled from "styled-components";
-import { darken } from "polished";
+import { Button } from "@chakra-ui/button";
+import styled from "@emotion/styled";
 
-export const PrimaryButton = styled.button`
+// Wrapper function for element
+const ButtonWrapper = (props) => {
+	return <Button boxShadow="md" {...props}></Button>;
+};
+
+export const PrimaryButton = styled(ButtonWrapper)`
 	display: inline-block;
 	font-size: 2rem;
 	font-weight: 700;
@@ -12,6 +17,7 @@ export const PrimaryButton = styled.button`
 	padding: 1rem 3rem;
 	text-align: center;
 	transition: background-color 0.3s linear;
+	height: auto;
 
 	&:hover,
 	&:focus,

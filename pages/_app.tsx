@@ -2,20 +2,22 @@ import App from "next/app";
 import { AppProps } from "next/app";
 
 import Page from "../components/Page";
-import i18n from "../i18n.js";
 import * as React from "react";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
+
+// import i18n from "../i18n";
+import { CacheProvider } from "@emotion/react";
+import { cache } from "@emotion/css";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const router = useRouter();
-	// Apply language based on NextJS internationalized route
-	i18n.changeLanguage(router.locale);
-
-  return (
-		<Page>
-			<Component {...pageProps} />
-		</Page>
-	)
+	return (
+		<CacheProvider value={cache}>
+			<Page>
+				<Component {...pageProps} />
+			</Page>
+		</CacheProvider>
+	);
 }
 
 MyApp.getInitialProps = async (appContext) => {
@@ -23,4 +25,4 @@ MyApp.getInitialProps = async (appContext) => {
 	return { ...appProps };
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);

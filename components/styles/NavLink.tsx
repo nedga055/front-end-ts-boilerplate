@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { darken } from "polished";
 
-const NavLink = styled.div`
+const SpanWrapper = (props) => {
+	return <span {...props}></span>;
+};
+
+const NavLink = styled(SpanWrapper)`
 	display: inline-block;
 	background: transparent;
 	border-top: 3px solid transparent;
@@ -9,7 +13,7 @@ const NavLink = styled.div`
 	transition: border-color 0.15s linear;
 
 	&[data-active="true"] {
-		background: ${({ theme }) => darken(0.05, theme.colors.theme.primary)};
+		background: ${({ theme }) => darken(0.05, theme.colors.gray.w300)};
 	}
 
 	&[data-active="true"],
@@ -19,11 +23,10 @@ const NavLink = styled.div`
 
 	> a {
 		display: inline-block;
-		color: ${({ theme }) => theme.colors.white};
-		padding: ${() => (5 - 2) / 2}rem ${({ theme }) => theme.padding.lg};
+		color: ${({ theme }) => theme.colors.black};
+		padding: ${() => (5 - 2) / 2}rem ${({ theme }) => theme.space.lg};
 		font-size: 1.8rem;
 		line-height: 2rem;
-		text-transform: lowercase;
 	}
 `;
 
